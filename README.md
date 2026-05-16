@@ -1,6 +1,8 @@
 # VideoMemory Site
 
-Standalone static project page for the open-source VideoMemory project.
+Standalone static project page for the open-source VideoMemory project. The
+copy is aimed at developers who want to build their own video-aware agents on
+top of VideoMemory.
 
 The site is intentionally dependency-free: plain HTML, CSS, and JavaScript.
 It can be hosted directly on GitHub Pages, Cloudflare Pages, or any static host.

@@ -10,7 +10,10 @@ const requiredText = [
   "VideoMemory",
   "Voice agent demo",
   "How it works",
-  "Open-source video memory for agents",
+  "Open-source toolkit for video-aware agents",
+  "Build your own",
+  "Developer primitives",
+  "Starter ideas",
 ];
 
 for (const text of requiredText) {

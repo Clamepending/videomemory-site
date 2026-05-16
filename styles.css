@@ -11,11 +11,13 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
   margin: 0;
   background: #f5f7f2;
+  overflow-x: hidden;
 }
 
 a {
@@ -128,6 +130,7 @@ h1 {
   font-size: clamp(56px, 10vw, 128px);
   line-height: 0.9;
   font-weight: 820;
+  overflow-wrap: normal;
 }
 
 .hero-lede {
@@ -186,9 +189,12 @@ h1 {
 }
 
 .section-header,
+.intro-grid,
 .demo-layout,
+.build-grid,
 .steps,
 .features,
+.idea-grid,
 .code-section pre,
 .final-cta,
 .site-footer {
@@ -211,6 +217,63 @@ h1 {
   color: #4b5a4f;
   font-size: 18px;
   line-height: 1.56;
+}
+
+.intro-section {
+  background: #ffffff;
+}
+
+.intro-grid {
+  display: grid;
+  grid-template-columns: 1.35fr 0.8fr 0.8fr;
+  gap: 16px;
+}
+
+.intro-grid article,
+.quickstart,
+.prompt-list li,
+.run-box,
+.steps li,
+.features article,
+.idea-grid article {
+  min-width: 0;
+  border: 1px solid #d8e2d2;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.intro-grid article {
+  padding: 22px;
+}
+
+.mini-label {
+  display: block;
+  margin-bottom: 12px;
+  color: #1a7d4b;
+  font-size: 13px;
+  font-weight: 820;
+  text-transform: uppercase;
+}
+
+.intro-grid h2 {
+  margin: 0;
+  font-size: clamp(28px, 3.5vw, 46px);
+  line-height: 1.04;
+}
+
+.intro-grid h3,
+.quickstart h3,
+.idea-grid h3 {
+  margin: 0 0 8px;
+  font-size: 20px;
+}
+
+.intro-grid p,
+.quickstart p,
+.idea-grid p {
+  margin: 0;
+  color: #4b5a4f;
+  line-height: 1.5;
 }
 
 .demo-layout {
@@ -278,15 +341,6 @@ h1 {
   list-style: none;
 }
 
-.prompt-list li,
-.run-box,
-.steps li,
-.features article {
-  border: 1px solid #d8e2d2;
-  border-radius: 8px;
-  background: #ffffff;
-}
-
 .prompt-list li {
   padding: 13px 15px;
   color: #26342b;
@@ -313,6 +367,37 @@ pre {
   color: #142018;
   word-break: break-word;
   line-height: 1.45;
+}
+
+.build-section {
+  background: #eef3ea;
+}
+
+.build-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 32px;
+}
+
+.quickstart {
+  padding: 20px;
+}
+
+.quickstart pre {
+  overflow-x: auto;
+  margin: 14px 0;
+  padding: 14px;
+  border-radius: 8px;
+  background: #101712;
+  color: #f1faed;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.quickstart code {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }
 
 .steps-section {
@@ -358,6 +443,21 @@ pre {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
+}
+
+.ideas-section {
+  background: #ffffff;
+}
+
+.idea-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 32px;
+}
+
+.idea-grid article {
+  padding: 20px;
 }
 
 .code-section {
@@ -425,8 +525,11 @@ pre {
   }
 
   .demo-layout,
+  .intro-grid,
+  .build-grid,
   .steps,
   .features,
+  .idea-grid,
   .final-cta {
     grid-template-columns: 1fr;
     display: grid;
@@ -440,7 +543,19 @@ pre {
   }
 
   h1 {
-    font-size: 56px;
+    font-size: clamp(40px, 11.5vw, 48px);
+    line-height: 0.96;
+  }
+
+  .hero-lede {
+    font-size: 20px;
+  }
+
+  .intro-grid h2,
+  .section-header h2,
+  .final-cta h2 {
+    font-size: 34px;
+    line-height: 1.05;
   }
 
   .section {
