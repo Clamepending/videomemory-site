@@ -3,216 +3,67 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="VideoMemory is an open-source toolkit for video-aware agents: create natural-language visual monitors, save evidence, and wake apps from video events.">
-    <title>VideoMemory - Open-source toolkit for video-aware agents</title>
+    <meta name="description" content="VideoMemory lets agents create natural-language monitors over camera streams and receive wakeups when visual events happen.">
+    <title>VideoMemory</title>
     <link rel="stylesheet" href="styles.css">
     <script src="config.js"></script>
   </head>
   <body>
-    <header class="site-header">
-      <a class="brand" href="#top" aria-label="VideoMemory home">VideoMemory</a>
-      <nav class="site-nav" aria-label="Primary">
-        <a href="#build">Build</a>
-        <a href="#demo">Demo</a>
-        <a href="#how">How it works</a>
-        <a href="#examples">Ideas</a>
-        <a data-github-link href="https://github.com/Clamepending/videomemory">GitHub</a>
-      </nav>
-    </header>
+    <main>
+      <header class="hero">
+        <h1>VideoMemory</h1>
+        <p class="subtitle">Natural-language video monitors for AI agents.</p>
+        <p class="authors">Open-source local server for cameras, visual tasks, evidence, and wakeup webhooks.</p>
+        <nav class="links" aria-label="Project links">
+          <a data-github-link href="https://github.com/Clamepending/videomemory">GitHub</a>
+          <a data-docs-link href="https://github.com/Clamepending/videomemory#readme">Docs</a>
+          <a href="#quickstart">Quickstart</a>
+          <a href="#api">API</a>
+          <a href="#voice-demo">Voice agent demo</a>
+        </nav>
+      </header>
 
-    <main id="top">
-      <section class="hero">
-        <picture class="hero-image" aria-hidden="true">
-          <img src="assets/voice-agent-demo.png" alt="">
-        </picture>
-        <div class="hero-copy">
-          <p class="eyebrow">Open-source toolkit for video-aware agents</p>
-          <h1>VideoMemory</h1>
-          <p class="hero-lede">
-            Build agents that can keep watching after the chat turn ends. Give
-            VideoMemory a camera feed and a natural-language condition; it saves
-            evidence and wakes your app when the visual event happens.
-          </p>
-          <div class="hero-actions">
-            <a class="button primary" href="#build">Start building</a>
-            <a class="button" href="#demo">See the voice demo</a>
-            <a class="button" data-github-link href="https://github.com/Clamepending/videomemory">Fork on GitHub</a>
-          </div>
+      <p class="tldr">
+        <strong>TL;DR:</strong> give VideoMemory a camera feed and a plain-English visual condition.
+        It watches the stream, records notes and evidence, and wakes your agent by webhook when the condition happens.
+      </p>
+
+      <figure class="demo-figure">
+        <div id="demoEmbed" class="demo-embed">
+          <img src="assets/voice-agent-demo.png" alt="VideoMemory voice agent demo showing a live camera feed and chat controls.">
         </div>
+        <figcaption>
+          Browser camera + voice-agent example. <span id="demoStatus">Static screenshot</span>.
+          <a id="demoOpenLink" href="https://github.com/Clamepending/videomemory/tree/main/examples/voice-agent-demo">Run it locally</a>.
+        </figcaption>
+      </figure>
+
+      <section>
+        <h2>What it is</h2>
+        <p>
+          VideoMemory is a small server that lets an agent create and manage video monitoring tasks.
+          It supports built-in cameras, USB cameras, browser camera streams, and RTSP streams.
+          Agents interact with it through HTTP.
+        </p>
+        <p>
+          Put the visual condition in VideoMemory. Keep the action in your agent:
+          speak to the user, update a ledger, send a message, call a robot policy, or ignore the event.
+        </p>
       </section>
 
-      <section class="section intro-section">
-        <div class="intro-grid">
-          <article>
-            <span class="mini-label">Use it for</span>
-            <h2>Prototypes, robots, assistants, lab demos, and weird weekend agents.</h2>
-          </article>
-          <article>
-            <h3>Bring any agent</h3>
-            <p>Wire VideoMemory to a voice agent, chat app, automation runner, robot process, or webhook worker.</p>
-          </article>
-          <article>
-            <h3>Own the behavior</h3>
-            <p>VideoMemory handles perception. Your code decides what to say, log, buy, open, count, or ignore.</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="section build-section" id="build">
-        <div class="section-header">
-          <p class="eyebrow">Build your own</p>
-          <h2>Start with a camera monitor, then make it yours.</h2>
-          <p>
-            VideoMemory is deliberately small at the integration boundary. Run
-            the local server, create a visual task, and point webhooks at your
-            own agent process.
-          </p>
-        </div>
-        <div class="build-grid">
-          <article class="quickstart">
-            <h3>Local quickstart</h3>
-            <pre><code>git clone https://github.com/Clamepending/videomemory
+      <section id="quickstart">
+        <h2>Quickstart</h2>
+        <pre><code>git clone https://github.com/Clamepending/videomemory
 cd videomemory
 uv run flask_app/app.py</code></pre>
-            <p>Open the local UI, add a model key, choose a camera, and create a task.</p>
-          </article>
-          <article class="quickstart">
-            <h3>Use the voice-agent example</h3>
-            <pre><code>cd examples/voice-agent-demo
-OPENAI_API_KEY=sk-... npm start</code></pre>
-            <p>Use this as the template for your own tool-calling video agent.</p>
-          </article>
-          <article class="quickstart">
-            <h3>Connect your webhook</h3>
-            <pre><code>PUT /api/settings/VIDEOMEMORY_OPENCLAW_WEBHOOK_URL
-POST /api/tasks
-GET /api/task/{task_id}</code></pre>
-            <p>Keep the action in your app. Put only the visual condition in VideoMemory.</p>
-          </article>
-        </div>
+        <p>
+          Then open <code>http://127.0.0.1:5050</code>, set a model API key in Settings,
+          choose a camera, and create a task.
+        </p>
       </section>
 
-      <section class="section demo-section" id="demo">
-        <div class="section-header">
-          <p class="eyebrow">Voice agent demo</p>
-          <h2>Talk to an AI that can set video triggers.</h2>
-          <p>
-            The demo uses OpenAI Realtime for voice, streams browser camera frames
-            into VideoMemory, and lets the agent create one-shot or persistent
-            visual monitors while you talk.
-          </p>
-        </div>
-
-        <div class="demo-layout">
-          <div class="demo-panel">
-            <div class="demo-topbar">
-              <span id="demoStatus">Demo server not connected</span>
-              <a id="demoOpenLink" href="https://github.com/Clamepending/videomemory/tree/main/examples/voice-agent-demo">Run locally</a>
-            </div>
-            <div id="demoEmbed" class="demo-embed" aria-label="Voice agent demo">
-              <img src="assets/voice-agent-demo.png" alt="VideoMemory voice agent demo screenshot">
-            </div>
-          </div>
-
-          <div class="demo-copy">
-            <h3>What to say</h3>
-            <ul class="prompt-list">
-              <li>Tell me when a phone is visible.</li>
-              <li>Each time I hold up fingers, add the number to a running total.</li>
-              <li>Be a shopkeeper. Watch these apples and keep a ledger.</li>
-            </ul>
-            <div class="run-box">
-              <span>Run the local demo</span>
-              <code>cd examples/voice-agent-demo && OPENAI_API_KEY=sk-... npm start</code>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section steps-section" id="how">
-        <div class="section-header">
-          <p class="eyebrow">How it works</p>
-          <h2>VideoMemory stays in the perception loop. Your agent stays in the conversation loop.</h2>
-        </div>
-        <ol class="steps">
-          <li>
-            <span>01</span>
-            <h3>Connect a stream</h3>
-            <p>Use a built-in camera, USB webcam, RTSP stream, Android phone, or browser camera bridge.</p>
-          </li>
-          <li>
-            <span>02</span>
-            <h3>Create a monitor</h3>
-            <p>Post a natural-language task such as “a phone is visible” or “a person enters.”</p>
-          </li>
-          <li>
-            <span>03</span>
-            <h3>Analyze changes</h3>
-            <p>The ingestor samples frames, asks a VLM for task updates, and saves note evidence.</p>
-          </li>
-          <li>
-            <span>04</span>
-            <h3>Wake the agent</h3>
-            <p>Webhook payloads include the task, note, frame URL, and video clip URL.</p>
-          </li>
-        </ol>
-      </section>
-
-      <section class="section feature-section">
-        <div class="section-header">
-          <p class="eyebrow">Developer primitives</p>
-          <h2>Everything useful is exposed as boring HTTP.</h2>
-        </div>
-        <div class="features">
-          <article>
-            <h3>Event-driven monitors</h3>
-            <p>Agents create visual conditions once and wait for webhook wakeups instead of polling frames.</p>
-          </article>
-          <article>
-            <h3>Evidence-first debugging</h3>
-            <p>Task notes can preserve the triggering frame and a short video clip for replay.</p>
-          </article>
-          <article>
-            <h3>Plain HTTP control plane</h3>
-            <p>Device discovery, tasks, settings, captures, and frame captions are all available by API.</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="section ideas-section" id="examples">
-        <div class="section-header">
-          <p class="eyebrow">Starter ideas</p>
-          <h2>Build the agent you wish your camera already had.</h2>
-        </div>
-        <div class="idea-grid">
-          <article>
-            <h3>Studio assistant</h3>
-            <p>Wake when someone enters frame, when a whiteboard changes, or when a demo object appears.</p>
-          </article>
-          <article>
-            <h3>Shopkeeper ledger</h3>
-            <p>Count apples, tools, parts, snacks, or lab supplies and hand the follow-up to a voice agent.</p>
-          </article>
-          <article>
-            <h3>Robot perception loop</h3>
-            <p>Use VideoMemory as a simple visual event layer for higher-level robot behaviors.</p>
-          </article>
-          <article>
-            <h3>Home or lab monitor</h3>
-            <p>Detect a package, a pet, an open door, a finished print, or a person at the desk.</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="section code-section" id="code">
-        <div class="section-header">
-          <p class="eyebrow">API</p>
-          <h2>Create a monitor with one request.</h2>
-          <p>
-            Put the visual condition in VideoMemory. Keep the user-facing action
-            in the agent runtime.
-          </p>
-        </div>
+      <section id="api">
+        <h2>Create a monitor</h2>
         <pre><code>curl -X POST http://127.0.0.1:5050/api/tasks \
   -H "Content-Type: application/json" \
   -d '{
@@ -224,22 +75,55 @@ GET /api/task/{task_id}</code></pre>
   }'</code></pre>
       </section>
 
-      <section class="section final-cta">
-        <div>
-          <p class="eyebrow">Open source</p>
-          <h2>Fork it, run the examples, and make your own video-aware agent.</h2>
-        </div>
-        <div class="hero-actions">
-          <a class="button primary" data-github-link href="https://github.com/Clamepending/videomemory">Get VideoMemory</a>
-          <a class="button" data-docs-link href="https://github.com/Clamepending/videomemory#readme">Read docs</a>
-        </div>
+      <section id="voice-demo">
+        <h2>Voice agent demo</h2>
+        <p>
+          The example in <code>examples/voice-agent-demo</code> uses a browser camera, microphone,
+          OpenAI Realtime voice, and VideoMemory monitors. While you talk, the agent can create
+          one-shot or persistent visual wakeups.
+        </p>
+        <pre><code>cd examples/voice-agent-demo
+OPENAI_API_KEY=sk-... npm start</code></pre>
       </section>
-    </main>
 
-    <footer class="site-footer">
-      <span>VideoMemory</span>
-      <a data-github-link href="https://github.com/Clamepending/videomemory">GitHub</a>
-    </footer>
+      <section>
+        <h2>Example tasks</h2>
+        <ul>
+          <li>Tell me when a phone is visible.</li>
+          <li>Each time I hold up fingers, add the number to a running total.</li>
+          <li>Be a shopkeeper. Watch these apples and keep a ledger.</li>
+          <li>Wake my agent when someone enters the room.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>HTTP endpoints</h2>
+        <ul>
+          <li><code>GET /api/devices</code> lists available inputs.</li>
+          <li><code>POST /api/caption_frame</code> asks about the current frame.</li>
+          <li><code>POST /api/tasks</code> creates a monitor.</li>
+          <li><code>GET /api/task/{task_id}</code> reads notes and evidence.</li>
+          <li><code>POST /api/task/{task_id}/stop</code> stops a monitor.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>How it works</h2>
+        <ol>
+          <li>The camera ingestor samples frames.</li>
+          <li>The model checks the active task descriptions.</li>
+          <li>VideoMemory saves task notes, frames, and optional clips.</li>
+          <li>A webhook wakes the agent with the task update.</li>
+        </ol>
+      </section>
+
+      <footer>
+        <p>
+          Built for local agent experiments. Source:
+          <a data-github-link href="https://github.com/Clamepending/videomemory">github.com/Clamepending/videomemory</a>.
+        </p>
+      </footer>
+    </main>
 
     <script src="script.js"></script>
   </body>

@@ -8,12 +8,12 @@ for (const file of requiredFiles) {
 const html = await readFile(new URL("../index.html", import.meta.url), "utf8");
 const requiredText = [
   "VideoMemory",
+  "Natural-language video monitors for AI agents.",
+  "TL;DR",
+  "Quickstart",
+  "Create a monitor",
   "Voice agent demo",
-  "How it works",
-  "Open-source toolkit for video-aware agents",
-  "Build your own",
-  "Developer primitives",
-  "Starter ideas",
+  "HTTP endpoints",
 ];
 
 for (const text of requiredText) {
