@@ -9,17 +9,13 @@ for (const link of document.querySelectorAll("[data-docs-link]")) {
 }
 
 const demoUrl = String(config.demoUrl || "").trim();
-const demoEmbed = document.getElementById("demoEmbed");
 const demoStatus = document.getElementById("demoStatus");
 const demoOpenLink = document.getElementById("demoOpenLink");
 
-if (demoUrl && demoEmbed && demoStatus && demoOpenLink) {
+if (demoUrl && demoStatus && demoOpenLink) {
   demoStatus.textContent = "Live demo";
-  demoOpenLink.textContent = "Open";
+  demoOpenLink.textContent = "Start live demo";
   demoOpenLink.href = demoUrl;
-  const iframe = document.createElement("iframe");
-  iframe.src = demoUrl;
-  iframe.title = "VideoMemory live voice agent demo";
-  iframe.loading = "lazy";
-  demoEmbed.replaceChildren(iframe);
+  demoOpenLink.target = "_blank";
+  demoOpenLink.rel = "noopener noreferrer";
 }
