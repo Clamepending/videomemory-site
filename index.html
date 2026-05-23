@@ -64,23 +64,6 @@
             controls
             playsinline
             preload="metadata"
-            poster="assets/posters/01-hook-voice-agent-shopkeeper.jpg"
-            src="assets/videos/01-hook-voice-agent-shopkeeper.mp4"
-          ></video>
-          <div>
-            <h3>Voice agent shopkeeper with VideoMemory</h3>
-            <p>
-              A voice agent shopkeeper with VideoMemory can start conversations proactively
-              when it sees a customer showing interest.
-            </p>
-          </div>
-        </article>
-
-        <article class="video-card">
-          <video
-            controls
-            playsinline
-            preload="metadata"
             poster="assets/posters/02-pitch-explanation.jpg"
             src="assets/videos/02-pitch-explanation.mp4"
           ></video>
@@ -110,6 +93,23 @@
           </div>
         </article>
       </section>
+
+      <article class="video-card">
+        <video
+          controls
+          playsinline
+          preload="metadata"
+          poster="assets/posters/01-hook-voice-agent-shopkeeper.jpg"
+          src="assets/videos/01-hook-voice-agent-shopkeeper.mp4"
+        ></video>
+        <div>
+          <h3>Voice agent shopkeeper with VideoMemory</h3>
+          <p>
+            A voice agent shopkeeper with VideoMemory can start conversations proactively
+            when it sees a customer showing interest.
+          </p>
+        </div>
+      </article>
 
       <section>
         <h2>What it is</h2>
@@ -168,8 +168,8 @@ OPENAI_API_KEY=sk-... npm start</code></pre>
         <ul>
           <li>Tell me when a phone is visible.</li>
           <li>Each time I hold up fingers, add the number to a running total.</li>
-          <li>Be a shopkeeper. Watch these apples and keep a ledger.</li>
-          <li>Wake my agent when someone enters the room.</li>
+          <li>Be a shopkeeper. When someone interracts or seems interested in the products on the table say hi and try to sell them the products.</li>
+          <li>When someone enters the room please turn on the lights and start the coffee machine (assuming your agent can control ights and the coffee machine).</li>
         </ul>
       </section>
 
