@@ -85,9 +85,10 @@ curl -fsSL -X POST http://127.0.0.1:5050/api/caption_frame \
 ## Claude Code quickstart
 
 ```bash
-claude auth login
-npx -y @clamepending/videomemory@0.1.9 claude
+npx -y @clamepending/videomemory claude
 ```
+
+If Claude asks for auth, run `claude auth login`, then run the same command again.
 
 Useful prompt:
 
@@ -113,8 +114,8 @@ Then in OpenClaw:
 Host CLI path:
 
 ```bash
-npx -y @clamepending/videomemory@0.1.9 onboard --safe --explain
-npx -y @clamepending/videomemory@0.1.9 onboard --safe
+npx -y @clamepending/videomemory onboard --safe --explain
+npx -y @clamepending/videomemory onboard --safe
 ```
 
 Use `http://host.docker.internal:5050` when OpenClaw runs in Docker and

@@ -1,6 +1,9 @@
-# VideoMemory
+# VideoMemory Agent Guide
 
-> VideoMemory is a local HTTP service for natural-language video monitors. Agents give it a camera feed and a visual condition; VideoMemory samples frames, calls a vision-language model, saves notes/evidence, and emits webhook updates when the condition happens.
+VideoMemory is a local HTTP service for natural-language video monitors. Agents
+give it a camera feed and a visual condition; VideoMemory samples frames, calls a
+vision-language model, saves notes/evidence, and emits webhook updates when the
+condition happens.
 
 Project page: https://clamepending.github.io/videomemory-site/
 Source repository: https://github.com/Clamepending/videomemory
@@ -95,11 +98,17 @@ curl -fsSL -X POST http://127.0.0.1:5050/api/task/0/stop
 The published npm package exposes the one-command Claude Code path:
 
 ```bash
-claude auth login
-npx -y @clamepending/videomemory@0.1.9 claude
+npx -y @clamepending/videomemory claude
 ```
 
-This starts or checks VideoMemory, wires the Claude channel webhook, opens the browser camera bridge on macOS, and launches Claude Code with VideoMemory tools enabled.
+This starts or checks VideoMemory, wires the Claude channel webhook, opens the
+browser camera bridge on macOS, and launches Claude Code with VideoMemory tools
+enabled. If Claude asks for auth, run:
+
+```bash
+claude auth login
+npx -y @clamepending/videomemory claude
+```
 
 Useful prompt:
 
@@ -125,8 +134,8 @@ Then in OpenClaw:
 Host CLI path:
 
 ```bash
-npx -y @clamepending/videomemory@0.1.9 onboard --safe --explain
-npx -y @clamepending/videomemory@0.1.9 onboard --safe
+npx -y @clamepending/videomemory onboard --safe --explain
+npx -y @clamepending/videomemory onboard --safe
 ```
 
 When OpenClaw runs in Docker and VideoMemory runs on the host, use:

@@ -196,6 +196,10 @@ h1 {
   background: #fbfcfa;
 }
 
+.primary-card {
+  background: #f4f8f7;
+}
+
 .quickstart-card h3 {
   margin: 0;
   padding: 16px 16px 0;

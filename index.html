@@ -68,7 +68,7 @@
             src="assets/videos/01-hook-voice-agent-shopkeeper.mp4"
           ></video>
           <div>
-            <h3>Voice agent shopkeeper with videomemory</h3>
+            <h3>Voice agent shopkeeper with VideoMemory</h3>
             <p>
               A voice agent shopkeeper with VideoMemory can start conversations proactively
               when it sees a customer showing interest.
@@ -87,7 +87,8 @@
           <div>
             <h3>How it works</h3>
             <p>
-              Video memory uses a simple pixel similarity deduplication and VLM loop to keep task relevant information up to date.
+              VideoMemory uses frame sampling, lightweight deduplication, and a VLM loop
+              to keep task-relevant visual state up to date.
             </p>
           </div>
         </article>
@@ -101,10 +102,10 @@
             src="assets/videos/03-finger-demo-ui.mp4"
           ></video>
           <div>
-            <h3>Basic demo/h3>
+            <h3>Basic demo</h3>
             <p>
-              A simple monitor demo, plus a look at the VideoMemory UI and the
-              task-note mechanism behind visual wakeups.
+              Tell me when you see a finger, plus a look at the VideoMemory UI
+              and the task-note mechanism behind visual wakeups.
             </p>
           </div>
         </article>
@@ -118,7 +119,11 @@
           Agents interact with it through HTTP.
         </p>
         <p>
-          Put the visual trigger condition in VideoMemory. Your agent should own the action sequence before and after the trigger. So if you wanted an agent to restock your pantry when it is running low, your agent would be reposnsible for specifying what "running low" means, knowing what you like, and actually ordering food. Videomemory would be responsible for emitting a callback to your agent when the pantry is detected low via a video stream.
+          Put the visual trigger condition in VideoMemory. Your agent should own
+          the action sequence before and after the trigger. For example, if an
+          agent restocks your pantry when supplies run low, the agent decides what
+          "running low" means and handles the order. VideoMemory emits the callback
+          when the pantry state is detected from a video stream.
         </p>
       </section>
 
@@ -190,22 +195,23 @@ OPENAI_API_KEY=sk-... npm start</code></pre>
       </section>
 
       <section id="agents">
-        <h2>Agent quickstarts</h2>
+        <h2>Use it from an agent</h2>
         <p>
-          Give your coding agent the small onboarding file instead of explaining
-          the API from scratch. Use <a href="llms.txt">llms.txt</a> for LLM-friendly
-          context, or <a href="AGENTS.md">AGENTS.md</a> when your coding tool reads
-          repository agent instructions.
+          Send your coding agent the onboarding file and let it discover the API,
+          device list, and monitor lifecycle itself. Use <a href="llms.txt">llms.txt</a>
+          for LLM-friendly context, or <a href="AGENTS.md">AGENTS.md</a> for coding tools
+          that prefer repository agent instructions.
         </p>
 
         <div class="quickstart-grid">
-          <article class="quickstart-card">
-            <h3>Coding agents</h3>
+          <article class="quickstart-card primary-card">
+            <h3>Any coding agent</h3>
             <p>
-              Point the agent at the local server, then have it list devices and
-              create monitor tasks through HTTP.
+              Paste this into your agent. It tells the agent where the docs live
+              and how to split visual triggers from follow-up actions.
             </p>
-            <pre><code>curl -fsSL https://clamepending.github.io/videomemory-site/llms.txt</code></pre>
+            <pre><code>Read https://clamepending.github.io/videomemory-site/llms.txt
+and use VideoMemory for visual triggers. Keep actions in your own runtime.</code></pre>
           </article>
 
           <article class="quickstart-card">
@@ -214,8 +220,7 @@ OPENAI_API_KEY=sk-... npm start</code></pre>
               Use the packaged launcher for local VideoMemory setup, the camera
               bridge, the Claude channel, and wakeup-capable monitor tools.
             </p>
-            <pre><code>claude auth login
-npx -y @clamepending/videomemory@0.1.9 claude</code></pre>
+            <pre><code>npx -y @clamepending/videomemory claude</code></pre>
           </article>
 
           <article class="quickstart-card">

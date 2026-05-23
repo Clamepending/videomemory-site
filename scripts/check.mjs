@@ -31,10 +31,12 @@ const requiredText = [
   "Create a monitor",
   "Voice agent demo",
   "HTTP endpoints",
-  "Agent quickstarts",
+  "Use it from an agent",
+  "Any coding agent",
   "llms.txt",
   "Claude Code",
   "OpenClaw",
+  "npx -y @clamepending/videomemory claude",
 ];
 
 for (const text of requiredText) {
@@ -48,7 +50,8 @@ for (const text of [
   "Default local server: http://127.0.0.1:5050",
   "Claude Code quickstart",
   "OpenClaw quickstart",
-  "@clamepending/videomemory@0.1.9",
+  "npx -y @clamepending/videomemory claude",
+  "npx -y @clamepending/videomemory onboard --safe",
 ]) {
   if (!llms.includes(text)) {
     throw new Error(`Missing llms.txt text: ${text}`);
