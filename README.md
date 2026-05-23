@@ -1,11 +1,22 @@
 # VideoMemory Site
 
 Standalone static project page for the open-source VideoMemory project. The
-page is intentionally plain: title, links, TL;DR, screenshot, quickstart, and
-API examples.
+page is intentionally simple: title, links, a hero demo video, two supporting
+videos, quickstart, and API examples.
 
 The site is intentionally dependency-free: plain HTML, CSS, and JavaScript.
 It can be hosted directly on GitHub Pages, Cloudflare Pages, or any static host.
+
+## Videos
+
+The checked-in videos are web-optimized exports derived from:
+
+- `/Users/mark/Movies/videomemdemo.aep_AME/Comp 1.mp4`
+- `/Users/mark/Movies/videomemdemo.aep_AME/Comp 2.mp4`
+- `/Users/mark/Movies/videomemdemo.aep_AME/Comp 3.mp4`
+
+They are committed under `assets/videos/`, with poster frames under
+`assets/posters/`.
 
 ## Run Locally
 

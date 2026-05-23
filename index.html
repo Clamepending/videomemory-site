@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="VideoMemory lets agents create natural-language monitors over camera streams and receive wakeups when visual events happen.">
+    <meta name="description" content="VideoMemory lets coding and voice agents create natural-language monitors over camera streams, save evidence, and wake up when visual events happen.">
     <title>VideoMemory</title>
     <link rel="stylesheet" href="styles.css">
     <script src="config.js"></script>
@@ -11,28 +11,108 @@
   <body>
     <main>
       <header class="hero">
-        <h1>VideoMemory</h1>
-        <p class="subtitle">Natural-language video monitors for AI agents.</p>
-        <p class="authors">Open-source local server for cameras, visual tasks, evidence, and wakeup webhooks.</p>
+        <div class="hero-copy">
+          <p class="eyebrow">Open-source video memory for agents</p>
+          <h1>VideoMemory</h1>
+          <p class="subtitle">Natural-language monitors over live camera streams.</p>
+          <p class="authors">
+            VideoMemory lets coding, voice, and video agents watch a stream for a condition,
+            keep evidence, and wake up when the condition happens.
+          </p>
+        </div>
         <nav class="links" aria-label="Project links">
           <a data-github-link href="https://github.com/Clamepending/videomemory">GitHub</a>
+          <a href="#videos">Videos</a>
+          <a href="#quickstart">Quickstart</a>
         </nav>
       </header>
+
+      <section class="hero-video" aria-labelledby="hook-title">
+        <div class="video-shell">
+          <video
+            controls
+            playsinline
+            preload="metadata"
+            poster="assets/posters/01-hook-voice-agent-shopkeeper.jpg"
+            src="assets/videos/01-hook-voice-agent-shopkeeper.mp4"
+          ></video>
+        </div>
+        <div class="video-copy">
+          <p class="kicker">Hook demo</p>
+          <h2 id="hook-title">A voice agent that notices the world first.</h2>
+          <p>
+            A shopkeeper-style voice agent uses VideoMemory to watch the camera,
+            recognize what is happening, and start a conversation proactively instead
+            of waiting for another user prompt.
+          </p>
+        </div>
+      </section>
 
       <p class="tldr">
         <strong>TL;DR:</strong> give VideoMemory a camera feed and a plain-English visual condition.
         It watches the stream, records notes and evidence, and wakes your agent by webhook when the condition happens.
       </p>
 
-      <figure class="demo-figure">
-        <div id="demoEmbed" class="demo-embed">
-          <img src="assets/voice-agent-demo.png" alt="VideoMemory voice agent demo showing a live camera feed and chat controls.">
+      <section id="videos" class="video-grid" aria-labelledby="videos-title">
+        <div class="section-heading">
+          <p class="kicker">Three-part tour</p>
+          <h2 id="videos-title">Demos and explanation</h2>
         </div>
-        <figcaption>
-          Browser camera + voice-agent example. <span id="demoStatus">Static screenshot</span>.
-          <a id="demoOpenLink" href="https://github.com/Clamepending/videomemory/tree/main/examples/voice-agent-demo">Run it locally</a>.
-        </figcaption>
-      </figure>
+
+        <article class="video-card">
+          <video
+            controls
+            playsinline
+            preload="metadata"
+            poster="assets/posters/01-hook-voice-agent-shopkeeper.jpg"
+            src="assets/videos/01-hook-voice-agent-shopkeeper.mp4"
+          ></video>
+          <div>
+            <p class="kicker">Comp 1</p>
+            <h3>Voice agent shopkeeper hook</h3>
+            <p>
+              The hook: a voice agent with VideoMemory starts conversations proactively
+              when the camera stream contains something worth reacting to.
+            </p>
+          </div>
+        </article>
+
+        <article class="video-card">
+          <video
+            controls
+            playsinline
+            preload="metadata"
+            poster="assets/posters/02-pitch-explanation.jpg"
+            src="assets/videos/02-pitch-explanation.mp4"
+          ></video>
+          <div>
+            <p class="kicker">Comp 2</p>
+            <h3>Pitch and mechanism</h3>
+            <p>
+              A direct explanation of VideoMemory: agents create monitor tasks over
+              video streams, then receive structured updates instead of polling pixels themselves.
+            </p>
+          </div>
+        </article>
+
+        <article class="video-card">
+          <video
+            controls
+            playsinline
+            preload="metadata"
+            poster="assets/posters/03-finger-demo-ui.jpg"
+            src="assets/videos/03-finger-demo-ui.mp4"
+          ></video>
+          <div>
+            <p class="kicker">Comp 3</p>
+            <h3>Tell me when you see a finger</h3>
+            <p>
+              A simple monitor demo, plus a look at the VideoMemory UI and the
+              task-note mechanism behind visual wakeups.
+            </p>
+          </div>
+        </article>
+      </section>
 
       <section>
         <h2>What it is</h2>
