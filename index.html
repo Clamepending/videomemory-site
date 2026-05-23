@@ -68,7 +68,7 @@
             src="assets/videos/01-hook-voice-agent-shopkeeper.mp4"
           ></video>
           <div>
-            <h3>Voice agent shopkeeper with VideoMemory</h3>
+            <h3>Voice agent shopkeeper with videomemory</h3>
             <p>
               A voice agent shopkeeper with VideoMemory can start conversations proactively
               when it sees a customer showing interest.
@@ -101,10 +101,10 @@
             src="assets/videos/03-finger-demo-ui.mp4"
           ></video>
           <div>
-            <h3>Basic demo</h3>
+            <h3>Basic demo/h3>
             <p>
-              Tell me when you see a finger, plus a look at the VideoMemory UI
-              and the task-note mechanism behind visual wakeups.
+              A simple monitor demo, plus a look at the VideoMemory UI and the
+              task-note mechanism behind visual wakeups.
             </p>
           </div>
         </article>
@@ -113,13 +113,12 @@
       <section>
         <h2>What it is</h2>
         <p>
-          VideoMemory is a small server that lets an agent create and manage video monitoring tasks.
-          It supports built-in cameras, USB cameras, browser camera streams, and RTSP streams.
+          VideoMemory is a small server that lets an agent create and manage video monitoring tasks (e.g. tell me when the cat is licking its paw, text me when the snow is high enough to call the shovelers) through natural language.
+          It supports built-in cameras, USB cameras, browser camera streams, and RTSP streams (streaming from your phone).
           Agents interact with it through HTTP.
         </p>
         <p>
-          Put the visual condition in VideoMemory. Keep the action in your agent:
-          speak to the user, update a ledger, send a message, call a robot policy, or ignore the event.
+          Put the visual trigger condition in VideoMemory. Your agent should own the action sequence before and after the trigger. So if you wanted an agent to restock your pantry when it is running low, your agent would be reposnsible for specifying what "running low" means, knowing what you like, and actually ordering food. Videomemory would be responsible for emitting a callback to your agent when the pantry is detected low via a video stream.
         </p>
       </section>
 
