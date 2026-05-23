@@ -16,7 +16,7 @@
           <h1>VideoMemory</h1>
           <p class="subtitle">Natural-language monitors over live camera streams.</p>
           <p class="authors">
-            VideoMemory lets coding, voice, and video agents watch a stream for a condition,
+            VideoMemory lets AI agents passively watch video streams for a condition,
             keep evidence, and wake up when the condition happens.
           </p>
         </div>
@@ -24,6 +24,7 @@
           <a data-github-link href="https://github.com/Clamepending/videomemory">GitHub</a>
           <a href="#videos">Videos</a>
           <a href="#quickstart">Quickstart</a>
+          <a href="#agents">Agents</a>
         </nav>
       </header>
 
@@ -55,8 +56,7 @@
 
       <section id="videos" class="video-grid" aria-labelledby="videos-title">
         <div class="section-heading">
-          <p class="kicker">Three-part tour</p>
-          <h2 id="videos-title">Demos and explanation</h2>
+          <h2 id="videos-title">Demos</h2>
         </div>
 
         <article class="video-card">
@@ -68,11 +68,10 @@
             src="assets/videos/01-hook-voice-agent-shopkeeper.mp4"
           ></video>
           <div>
-            <p class="kicker">Comp 1</p>
-            <h3>Voice agent shopkeeper hook</h3>
+            <h3>Voice agent shopkeeper with VideoMemory</h3>
             <p>
-              The hook: a voice agent with VideoMemory starts conversations proactively
-              when the camera stream contains something worth reacting to.
+              A voice agent shopkeeper with VideoMemory can start conversations proactively
+              when it sees a customer showing interest.
             </p>
           </div>
         </article>
@@ -86,11 +85,9 @@
             src="assets/videos/02-pitch-explanation.mp4"
           ></video>
           <div>
-            <p class="kicker">Comp 2</p>
-            <h3>Pitch and mechanism</h3>
+            <h3>How it works</h3>
             <p>
-              A direct explanation of VideoMemory: agents create monitor tasks over
-              video streams, then receive structured updates instead of polling pixels themselves.
+              Video memory uses a simple pixel similarity deduplication and VLM loop to keep task relevant information up to date.
             </p>
           </div>
         </article>
@@ -104,11 +101,10 @@
             src="assets/videos/03-finger-demo-ui.mp4"
           ></video>
           <div>
-            <p class="kicker">Comp 3</p>
-            <h3>Tell me when you see a finger</h3>
+            <h3>Basic demo</h3>
             <p>
-              A simple monitor demo, plus a look at the VideoMemory UI and the
-              task-note mechanism behind visual wakeups.
+              Tell me when you see a finger, plus a look at the VideoMemory UI
+              and the task-note mechanism behind visual wakeups.
             </p>
           </div>
         </article>
@@ -131,7 +127,8 @@
         <h2>Quickstart</h2>
         <pre><code>git clone https://github.com/Clamepending/videomemory
 cd videomemory
-uv run flask_app/app.py</code></pre>
+uv sync
+uv run videomemory-server</code></pre>
         <p>
           Then open <code>http://127.0.0.1:5050</code>, set a model API key in Settings,
           choose a camera, and create a task.
@@ -191,6 +188,48 @@ OPENAI_API_KEY=sk-... npm start</code></pre>
           <li>VideoMemory saves task notes, frames, and optional clips.</li>
           <li>A webhook wakes the agent with the task update.</li>
         </ol>
+      </section>
+
+      <section id="agents">
+        <h2>Agent quickstarts</h2>
+        <p>
+          Give your coding agent the small onboarding file instead of explaining
+          the API from scratch. Use <a href="llms.txt">llms.txt</a> for LLM-friendly
+          context, or <a href="AGENTS.md">AGENTS.md</a> when your coding tool reads
+          repository agent instructions.
+        </p>
+
+        <div class="quickstart-grid">
+          <article class="quickstart-card">
+            <h3>Coding agents</h3>
+            <p>
+              Point the agent at the local server, then have it list devices and
+              create monitor tasks through HTTP.
+            </p>
+            <pre><code>curl -fsSL https://clamepending.github.io/videomemory-site/llms.txt</code></pre>
+          </article>
+
+          <article class="quickstart-card">
+            <h3>Claude Code</h3>
+            <p>
+              Use the packaged launcher for local VideoMemory setup, the camera
+              bridge, the Claude channel, and wakeup-capable monitor tools.
+            </p>
+            <pre><code>claude auth login
+npx -y @clamepending/videomemory@0.1.9 claude</code></pre>
+          </article>
+
+          <article class="quickstart-card">
+            <h3>OpenClaw</h3>
+            <p>
+              Install the plugin, inspect the safe onboarding plan, then run it.
+              Keep follow-up actions in OpenClaw and visual triggers in VideoMemory.
+            </p>
+            <pre><code>openclaw plugins install @clamepending/videomemory
+/videomemory-onboard --explain
+/videomemory-onboard</code></pre>
+          </article>
+        </div>
       </section>
 
       <footer>

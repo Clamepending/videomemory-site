@@ -5,6 +5,8 @@ const requiredFiles = [
   "styles.css",
   "script.js",
   "config.js",
+  "llms.txt",
+  "AGENTS.md",
   "assets/videos/01-hook-voice-agent-shopkeeper.mp4",
   "assets/videos/02-pitch-explanation.mp4",
   "assets/videos/03-finger-demo-ui.mp4",
@@ -21,18 +23,46 @@ const requiredText = [
   "VideoMemory",
   "Natural-language monitors over live camera streams.",
   "TL;DR",
-  "Voice agent shopkeeper hook",
-  "Pitch and mechanism",
+  "Voice agent shopkeeper with VideoMemory",
+  "How it works",
+  "Basic demo",
   "Tell me when you see a finger",
   "Quickstart",
   "Create a monitor",
   "Voice agent demo",
   "HTTP endpoints",
+  "Agent quickstarts",
+  "llms.txt",
+  "Claude Code",
+  "OpenClaw",
 ];
 
 for (const text of requiredText) {
   if (!html.includes(text)) {
     throw new Error(`Missing required text: ${text}`);
+  }
+}
+
+const llms = await readFile(new URL("../llms.txt", import.meta.url), "utf8");
+for (const text of [
+  "Default local server: http://127.0.0.1:5050",
+  "Claude Code quickstart",
+  "OpenClaw quickstart",
+  "@clamepending/videomemory@0.1.9",
+]) {
+  if (!llms.includes(text)) {
+    throw new Error(`Missing llms.txt text: ${text}`);
+  }
+}
+
+const agents = await readFile(new URL("../AGENTS.md", import.meta.url), "utf8");
+for (const text of [
+  "VideoMemory Agent Onboarding",
+  "For \"when X happens, do Y\"",
+  "Basic HTTP workflow",
+]) {
+  if (!agents.includes(text)) {
+    throw new Error(`Missing AGENTS.md text: ${text}`);
   }
 }
 

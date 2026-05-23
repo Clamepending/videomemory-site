@@ -1,0 +1,177 @@
+# VideoMemory
+
+> VideoMemory is a local HTTP service for natural-language video monitors. Agents give it a camera feed and a visual condition; VideoMemory samples frames, calls a vision-language model, saves notes/evidence, and emits webhook updates when the condition happens.
+
+Project page: https://clamepending.github.io/videomemory-site/
+Source repository: https://github.com/Clamepending/videomemory
+Default local server: http://127.0.0.1:5050
+OpenAPI spec: http://127.0.0.1:5050/openapi.json
+
+## What agents should do
+
+- Use VideoMemory as the visual monitor, not as the conversational/action agent.
+- Put only the visual trigger in `task_description`.
+- Keep follow-up actions in the calling agent runtime.
+- For "when X happens, do Y": create a VideoMemory task for "watch for X", then let the webhook receiver or channel perform "do Y".
+- Prefer `POST /api/caption_frame` for one-off questions about the current frame.
+- Prefer `POST /api/device/{io_id}/capture` when the user asks for a fresh photo.
+- Prefer `GET /api/device/{io_id}/preview` when the user asks for the latest cached preview image.
+
+## Run the core service
+
+```bash
+git clone https://github.com/Clamepending/videomemory
+cd videomemory
+uv sync
+uv run videomemory-server
+```
+
+If the console script is unavailable in an older checkout, use:
+
+```bash
+uv run flask_app/app.py
+```
+
+The UI should be available at:
+
+```text
+http://127.0.0.1:5050
+```
+
+## Health and readiness
+
+```bash
+curl -fsSL http://127.0.0.1:5050/api/health
+curl -fsSL http://127.0.0.1:5050/api/devices
+node scripts/agent/ensure-server.mjs --json
+```
+
+Health only means the HTTP server is running. Monitors also need a reachable model runtime or configured model API key, plus camera permission for local USB or built-in cameras.
+
+## Core HTTP flow
+
+List devices:
+
+```bash
+curl -fsSL http://127.0.0.1:5050/api/devices
+```
+
+Ask about the current frame:
+
+```bash
+curl -fsSL -X POST http://127.0.0.1:5050/api/caption_frame \
+  -H 'Content-Type: application/json' \
+  -d '{"io_id":"0","prompt":"Describe what is visible in this camera frame."}'
+```
+
+Create a monitor:
+
+```bash
+curl -fsSL -X POST http://127.0.0.1:5050/api/tasks \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "io_id": "0",
+    "task_description": "A phone is visible in the frame.",
+    "bot_id": "my-agent",
+    "save_note_frames": true,
+    "save_note_videos": true
+  }'
+```
+
+Read task notes and evidence:
+
+```bash
+curl -fsSL http://127.0.0.1:5050/api/task/0
+```
+
+Stop a monitor:
+
+```bash
+curl -fsSL -X POST http://127.0.0.1:5050/api/task/0/stop
+```
+
+## Claude Code quickstart
+
+The published npm package exposes the one-command Claude Code path:
+
+```bash
+claude auth login
+npx -y @clamepending/videomemory@0.1.9 claude
+```
+
+This starts or checks VideoMemory, wires the Claude channel webhook, opens the browser camera bridge on macOS, and launches Claude Code with VideoMemory tools enabled.
+
+Useful prompt:
+
+```text
+Use VideoMemory to watch my FaceTime camera. Wake me when a human is visible.
+```
+
+## OpenClaw quickstart
+
+Plugin path:
+
+```bash
+openclaw plugins install @clamepending/videomemory
+```
+
+Then in OpenClaw:
+
+```text
+/videomemory-onboard --explain
+/videomemory-onboard
+```
+
+Host CLI path:
+
+```bash
+npx -y @clamepending/videomemory@0.1.9 onboard --safe --explain
+npx -y @clamepending/videomemory@0.1.9 onboard --safe
+```
+
+When OpenClaw runs in Docker and VideoMemory runs on the host, use:
+
+```text
+http://host.docker.internal:5050
+```
+
+When both are in the bundled Docker network, use:
+
+```text
+http://videomemory:5050
+```
+
+## Configuration keys
+
+Set at least one model provider key in the UI or through `PUT /api/settings/{key}`:
+
+- `GOOGLE_API_KEY`
+- `OPENAI_API_KEY`
+- `OPENROUTER_API_KEY`
+- `ANTHROPIC_API_KEY`
+- `VIDEO_INGESTOR_MODEL`
+- `VIDEOMEMORY_OPENCLAW_WEBHOOK_URL`
+- `VIDEOMEMORY_SELF_BASE_URL`
+
+Example:
+
+```bash
+curl -fsSL -X PUT http://127.0.0.1:5050/api/settings/GOOGLE_API_KEY \
+  -H 'Content-Type: application/json' \
+  -d '{"value":"YOUR_KEY"}'
+```
+
+## Important split
+
+Bad task description:
+
+```text
+Watch for a backpack and tell a joke in chat.
+```
+
+Better split:
+
+```text
+VideoMemory task_description: "A backpack is visible."
+Agent-side action: "When the webhook arrives, tell one short backpack joke in chat."
+```

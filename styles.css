@@ -181,6 +181,39 @@ h1 {
   color: #3f4b44;
 }
 
+.quickstart-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.quickstart-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  border: 1px solid #d6ddd3;
+  background: #fbfcfa;
+}
+
+.quickstart-card h3 {
+  margin: 0;
+  padding: 16px 16px 0;
+  font-size: 22px;
+  line-height: 1.2;
+}
+
+.quickstart-card p {
+  flex: 1;
+  margin: 10px 16px 0;
+  color: #3f4b44;
+}
+
+.quickstart-card pre {
+  margin: 14px 0 0;
+  border-width: 1px 0 0;
+}
+
 figcaption {
   margin-top: 8px;
   color: #444;
@@ -241,7 +274,8 @@ footer {
 
 @media (max-width: 860px) {
   .hero-video,
-  .video-card {
+  .video-card,
+  .quickstart-grid {
     grid-template-columns: 1fr;
   }
 

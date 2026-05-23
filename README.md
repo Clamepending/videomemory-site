@@ -2,7 +2,7 @@
 
 Standalone static project page for the open-source VideoMemory project. The
 page is intentionally simple: title, links, a hero demo video, two supporting
-videos, quickstart, and API examples.
+videos, quickstart, agent quickstarts, and API examples.
 
 The site is intentionally dependency-free: plain HTML, CSS, and JavaScript.
 It can be hosted directly on GitHub Pages, Cloudflare Pages, or any static host.
@@ -17,6 +17,12 @@ The checked-in videos are web-optimized exports derived from:
 
 They are committed under `assets/videos/`, with poster frames under
 `assets/posters/`.
+
+## Agent Onboarding
+
+- `llms.txt` is the LLM-friendly public context file.
+- `AGENTS.md` is the coding-agent onboarding guide.
+- The homepage links both below the "How it works" section.
 
 ## Run Locally
 
