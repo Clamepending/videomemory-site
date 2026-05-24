@@ -215,7 +215,17 @@ h1 {
 
 .quickstart-card pre {
   margin: 14px 0 0;
+  max-width: 100%;
   border-width: 1px 0 0;
+  overflow-x: hidden;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.quickstart-card pre code {
+  white-space: inherit;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 figcaption {
