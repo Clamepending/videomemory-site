@@ -71,6 +71,32 @@
         </p>
       </aside>
 
+      <section id="live-demo" class="live-demo-section" aria-labelledby="live-demo-title">
+        <div class="section-heading">
+          <p class="card-label">Hosted demo</p>
+          <h2 id="live-demo-title">Try the live voice agent</h2>
+          <p class="section-lead">
+            This Hugging Face Space runs the voice agent and a local VideoMemory server
+            in one container. Click <strong>Start live agent</strong>, allow camera and
+            microphone access, then ask it to watch for something.
+          </p>
+        </div>
+        <div class="live-demo-frame">
+          <iframe
+            data-demo-frame
+            src="https://clamepending-videomemory-demo.hf.space/"
+            title="VideoMemory live voice agent demo"
+            allow="camera; microphone; autoplay; clipboard-write; fullscreen"
+            referrerpolicy="strict-origin-when-cross-origin"
+          ></iframe>
+        </div>
+        <p class="demo-fallback">
+          If the embedded frame cannot get camera or microphone permission,
+          <a data-demo-link href="https://clamepending-videomemory-demo.hf.space/" target="_blank" rel="noopener noreferrer">open the demo in a new tab</a>.
+          The public demo is rate-limited.
+        </p>
+      </section>
+
       <section id="videos" class="video-grid" aria-labelledby="videos-title">
         <div class="section-heading">
           <h2 id="videos-title">Demos</h2>

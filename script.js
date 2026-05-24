@@ -19,3 +19,15 @@ if (demoUrl && demoStatus && demoOpenLink) {
   demoOpenLink.target = "_blank";
   demoOpenLink.rel = "noopener noreferrer";
 }
+
+if (demoUrl) {
+  for (const link of document.querySelectorAll("[data-demo-link]")) {
+    link.href = demoUrl;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+  }
+
+  for (const frame of document.querySelectorAll("[data-demo-frame]")) {
+    frame.src = demoUrl;
+  }
+}

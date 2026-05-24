@@ -23,6 +23,8 @@ const requiredText = [
   "VideoMemory",
   "Natural-language monitors over live camera streams.",
   "TL;DR",
+  "Try the live voice agent",
+  "https://clamepending-videomemory-demo.hf.space/",
   "Voice agent shopkeeper with VideoMemory",
   "How it works",
   "Basic demo",
