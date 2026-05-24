@@ -13,6 +13,7 @@ const requiredFiles = [
   "assets/posters/01-hook-voice-agent-shopkeeper.jpg",
   "assets/posters/02-pitch-explanation.jpg",
   "assets/posters/03-finger-demo-ui.jpg",
+  "assets/social-card.png",
 ];
 for (const file of requiredFiles) {
   await readFile(new URL(`../${file}`, import.meta.url));
@@ -21,6 +22,12 @@ for (const file of requiredFiles) {
 const html = await readFile(new URL("../index.html", import.meta.url), "utf8");
 const requiredText = [
   "VideoMemory",
+  "VideoMemory - Natural-language video monitors for AI agents",
+  "twitter:card",
+  "summary_large_image",
+  "og:image",
+  "https://clamepending.github.io/videomemory-site/assets/social-card.png",
+  "application/ld+json",
   "Natural-language monitors over live camera streams.",
   "TL;DR",
   "Try the live voice agent",
