@@ -16,8 +16,9 @@
           <h1>VideoMemory</h1>
           <p class="subtitle">Natural-language monitors over live camera streams.</p>
           <p class="authors">
-            VideoMemory lets AI agents passively watch video streams for a condition,
-            keep evidence, and wake up when the condition happens.
+            VideoMemory lets AI agents <strong>passively watch video streams</strong>
+            for a condition, <span class="accent evidence">keep evidence</span>,
+            and <span class="accent wake">wake up</span> when the condition happens.
           </p>
         </div>
         <nav class="links" aria-label="Project links">
@@ -47,10 +48,14 @@
         </div>
       </section>
 
-      <p class="tldr">
-        <strong>TL;DR:</strong> give VideoMemory a camera feed and a plain-English visual condition.
-        It watches the stream, records notes and evidence, and wakes your agent by webhook when the condition happens.
-      </p>
+      <aside class="tldr">
+        <p>
+          <strong>TL;DR:</strong> give VideoMemory a camera feed and a
+          <span class="accent trigger">plain-English visual condition</span>.
+          It watches the stream, records <span class="accent evidence">notes and evidence</span>,
+          and wakes your agent by <span class="accent wake">webhook</span> when the condition happens.
+        </p>
+      </aside>
 
       <section id="videos" class="video-grid" aria-labelledby="videos-title">
         <div class="section-heading">
@@ -66,10 +71,11 @@
             src="assets/videos/02-pitch-explanation.mp4"
           ></video>
           <div>
+            <p class="card-label">Mechanism</p>
             <h3>How it works</h3>
             <p>
-              VideoMemory uses frame sampling, lightweight deduplication, and a VLM loop
-              to keep task-relevant visual state up to date.
+              <strong>Frame sampling</strong>, lightweight deduplication, and a VLM loop
+              keep <span class="accent evidence">task-relevant visual state</span> up to date.
             </p>
           </div>
         </article>
@@ -83,10 +89,11 @@
             src="assets/videos/03-finger-demo-ui.mp4"
           ></video>
           <div>
+            <p class="card-label">Monitor demo</p>
             <h3>Basic demo</h3>
             <p>
-              Tell me when you see a finger, plus a look at the VideoMemory UI
-              and the task-note mechanism behind visual wakeups.
+              <strong>Tell me when you see a finger</strong>, plus a look at the VideoMemory UI
+              and the <span class="accent evidence">task-note mechanism</span> behind visual wakeups.
             </p>
           </div>
         </article>
@@ -101,32 +108,43 @@
           src="assets/videos/01-hook-voice-agent-shopkeeper.mp4"
         ></video>
         <div>
+          <p class="card-label">Proactive agent</p>
           <h3>Voice agent shopkeeper with VideoMemory</h3>
           <p>
-            A voice agent shopkeeper with VideoMemory can start conversations proactively
+            A voice agent shopkeeper with VideoMemory can
+            <span class="accent wake">start conversations proactively</span>
             when it sees a customer showing interest.
           </p>
         </div>
       </article>
 
-      <section>
+      <section class="text-section">
         <h2>What it is</h2>
+        <div class="callout">
+          <p>
+            <strong>VideoMemory is a small server for natural-language video monitoring tasks.</strong>
+            Ask it to watch for things like <span class="accent trigger">a cat licking its paw</span>,
+            snow high enough to call shovelers, or someone showing interest in products on a table.
+          </p>
+        </div>
         <p>
-          VideoMemory is a small server that lets an agent create and manage video monitoring tasks (e.g. tell me when the cat is licking its paw, text me when the snow is high enough to call the shovelers) through natural language.
-          It supports built-in cameras, USB cameras, browser camera streams, and RTSP streams (streaming from your phone).
-          Agents interact with it through HTTP.
+          It supports <strong>built-in cameras</strong>, <strong>USB cameras</strong>,
+          <strong>browser camera streams</strong>, and <strong>RTSP streams</strong>
+          from phones or network cameras. Agents interact with it through HTTP.
         </p>
         <p>
-          Put the visual trigger condition in VideoMemory. Your agent should own
-          the action sequence before and after the trigger. For example, if an
-          agent restocks your pantry when supplies run low, the agent decides what
-          "running low" means and handles the order. VideoMemory emits the callback
-          when the pantry state is detected from a video stream.
+          Put the <span class="accent trigger">visual trigger condition</span> in VideoMemory.
+          Your agent owns the <span class="accent action">action sequence</span> before and after
+          the trigger. For a pantry-restocking agent, VideoMemory detects the low-pantry state;
+          the agent decides what "running low" means and handles the order.
         </p>
       </section>
 
-      <section id="quickstart">
+      <section id="quickstart" class="text-section">
         <h2>Quickstart</h2>
+        <p class="section-lead">
+          Start the local service, then open the browser UI to choose a camera and create a task.
+        </p>
         <pre><code>git clone https://github.com/Clamepending/videomemory
 cd videomemory
 uv sync
@@ -137,8 +155,11 @@ uv run videomemory-server</code></pre>
         </p>
       </section>
 
-      <section id="api">
+      <section id="api" class="text-section">
         <h2>Create a monitor</h2>
+        <p class="section-lead">
+          A monitor is just an input device plus a plain-English condition.
+        </p>
         <pre><code>curl -X POST http://127.0.0.1:5050/api/tasks \
   -H "Content-Type: application/json" \
   -d '{
@@ -150,7 +171,7 @@ uv run videomemory-server</code></pre>
   }'</code></pre>
       </section>
 
-      <section id="voice-demo">
+      <section id="voice-demo" class="text-section">
         <h2>Voice agent demo</h2>
         <p>
           The example in <code>examples/voice-agent-demo</code> uses a browser camera, microphone,
@@ -161,38 +182,38 @@ uv run videomemory-server</code></pre>
 OPENAI_API_KEY=sk-... npm start</code></pre>
       </section>
 
-      <section>
+      <section class="text-section">
         <h2>Example tasks</h2>
-        <ul>
-          <li>Tell me when a phone is visible.</li>
-          <li>Each time I hold up fingers, add the number to a running total.</li>
-          <li>Be a shopkeeper. When someone interracts or seems interested in the products on the table say hi and try to sell them the products.</li>
-          <li>When someone enters the room please turn on the lights and start the coffee machine (assuming your agent can control ights and the coffee machine).</li>
+        <ul class="task-list">
+          <li><strong>Presence:</strong> tell me when a phone is visible.</li>
+          <li><strong>Counting:</strong> each time I hold up fingers, add the number to a running total.</li>
+          <li><strong>Sales assistant:</strong> when someone interacts with products on the table, say hi and try to sell them.</li>
+          <li><strong>Automation:</strong> when someone enters the room, turn on the lights and start the coffee machine.</li>
         </ul>
       </section>
 
-      <section>
+      <section class="text-section">
         <h2>HTTP endpoints</h2>
-        <ul>
-          <li><code>GET /api/devices</code> lists available inputs.</li>
-          <li><code>POST /api/caption_frame</code> asks about the current frame.</li>
-          <li><code>POST /api/tasks</code> creates a monitor.</li>
-          <li><code>GET /api/task/{task_id}</code> reads notes and evidence.</li>
-          <li><code>POST /api/task/{task_id}/stop</code> stops a monitor.</li>
+        <ul class="endpoint-list">
+          <li><code>GET /api/devices</code><span>lists available inputs.</span></li>
+          <li><code>POST /api/caption_frame</code><span>asks about the current frame.</span></li>
+          <li><code>POST /api/tasks</code><span>creates a monitor.</span></li>
+          <li><code>GET /api/task/{task_id}</code><span>reads notes and evidence.</span></li>
+          <li><code>POST /api/task/{task_id}/stop</code><span>stops a monitor.</span></li>
         </ul>
       </section>
 
-      <section>
+      <section class="text-section">
         <h2>How it works</h2>
-        <ol>
-          <li>The camera ingestor samples frames.</li>
-          <li>The model checks the active task descriptions.</li>
-          <li>VideoMemory saves task notes, frames, and optional clips.</li>
-          <li>A webhook wakes the agent with the task update.</li>
+        <ol class="flow-list">
+          <li><strong>Sample</strong><span>The camera ingestor samples frames.</span></li>
+          <li><strong>Check</strong><span>The model checks the active task descriptions.</span></li>
+          <li><strong>Record</strong><span>VideoMemory saves task notes, frames, and optional clips.</span></li>
+          <li><strong>Wake</strong><span>A webhook wakes the agent with the task update.</span></li>
         </ol>
       </section>
 
-      <section id="agents">
+      <section id="agents" class="text-section">
         <h2>Use it from an agent</h2>
         <p>
           Send your coding agent the onboarding file and let it discover the API,
@@ -203,6 +224,7 @@ OPENAI_API_KEY=sk-... npm start</code></pre>
 
         <div class="quickstart-grid">
           <article class="quickstart-card primary-card">
+            <p class="card-label">Universal</p>
             <h3>Any coding agent</h3>
             <p>
               Paste this into your agent. It tells the agent where the docs live
@@ -213,6 +235,7 @@ and use VideoMemory for visual triggers. Keep actions in your own runtime.</code
           </article>
 
           <article class="quickstart-card">
+            <p class="card-label">Channel wakeups</p>
             <h3>Claude Code</h3>
             <p>
               Use the packaged launcher for local VideoMemory setup, the camera
@@ -222,6 +245,7 @@ and use VideoMemory for visual triggers. Keep actions in your own runtime.</code
           </article>
 
           <article class="quickstart-card">
+            <p class="card-label">Plugin path</p>
             <h3>OpenClaw</h3>
             <p>
               Install the plugin, inspect the safe onboarding plan, then run it.
