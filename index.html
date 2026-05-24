@@ -5,12 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="VideoMemory lets coding and voice agents create natural-language monitors over camera streams, save evidence, and wake up when visual events happen.">
     <title>VideoMemory</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <script src="config.js"></script>
   </head>
   <body>
-    <main>
-      <header class="hero">
+    <header class="project-hero">
+      <nav class="top-nav" aria-label="Project navigation">
+        <div class="nav-links">
+          <a class="active" href="#">Overview</a>
+          <a href="#videos">Demos</a>
+          <a href="#quickstart">Quickstart</a>
+          <a href="#agents">Agents</a>
+        </div>
+        <div class="nav-links nav-meta">
+          <a data-github-link href="https://github.com/Clamepending/videomemory">GitHub</a>
+        </div>
+      </nav>
+
+      <div class="hero-stage">
         <div class="hero-copy">
           <p class="eyebrow">Open-source video memory for agents</p>
           <h1>VideoMemory</h1>
@@ -20,34 +35,33 @@
             for a condition, <span class="accent evidence">keep evidence</span>,
             and <span class="accent wake">wake up</span> when the condition happens.
           </p>
+          <div class="hero-actions" aria-label="Primary links">
+            <a class="button-link primary" data-github-link href="https://github.com/Clamepending/videomemory">Source code <span aria-hidden="true">&lt;/&gt;</span></a>
+            <a class="button-link" href="#quickstart">Quickstart</a>
+            <a class="button-link" id="demoOpenLink" href="#videos"><span id="demoStatus">Demos</span></a>
+          </div>
         </div>
-        <nav class="links" aria-label="Project links">
-          <a data-github-link href="https://github.com/Clamepending/videomemory">GitHub</a>
-          <a href="#quickstart">Quickstart</a>
-          <a href="#agents">Agents</a>
-        </nav>
-      </header>
 
-      <section class="hero-video" aria-labelledby="hook-title">
-        <div class="video-shell">
-          <video
-            controls
-            playsinline
-            preload="metadata"
-            poster="assets/posters/01-hook-voice-agent-shopkeeper.jpg"
-            src="assets/videos/01-hook-voice-agent-shopkeeper.mp4"
-          ></video>
-        </div>
-        <div class="video-copy">
-          <h2 id="hook-title">A voice agent that notices the world first.</h2>
-          <p>
-            A shopkeeper-style voice agent uses VideoMemory to watch the camera,
-            recognize what is happening, and start a conversation proactively instead
-            of waiting for another user prompt.
-          </p>
-        </div>
-      </section>
+        <figure class="hero-cover" aria-labelledby="hook-title">
+          <div class="video-shell">
+            <video
+              controls
+              playsinline
+              preload="metadata"
+              poster="assets/posters/01-hook-voice-agent-shopkeeper.jpg"
+              src="assets/videos/01-hook-voice-agent-shopkeeper.mp4"
+            ></video>
+          </div>
+          <figcaption class="cover-caption">
+            <strong id="hook-title">A voice agent that notices the world first.</strong>
+            It watches the camera, recognizes what is happening, and starts a conversation
+            proactively instead of waiting for another user prompt.
+          </figcaption>
+        </figure>
+      </div>
+    </header>
 
+    <main class="paper">
       <aside class="tldr">
         <p>
           <strong>TL;DR:</strong> give VideoMemory a camera feed and a
@@ -262,6 +276,8 @@ and use VideoMemory for visual triggers. Keep actions in your own runtime.</code
         <p>
           Built for local agent experiments. Source:
           <a data-github-link href="https://github.com/Clamepending/videomemory">github.com/Clamepending/videomemory</a>.
+          Design direction references
+          <a href="https://shikun.io/projects/clarity">Clarity</a>.
         </p>
       </footer>
     </main>
