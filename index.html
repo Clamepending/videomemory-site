@@ -148,8 +148,9 @@
             <p class="card-label">Mechanism</p>
             <h3>How it works</h3>
             <p>
-              <strong>Frame sampling</strong>, lightweight deduplication, and a VLM loop
-              keep <span class="accent evidence">task-relevant visual state</span> up to date.
+              <strong>Regular VLM calls</strong>, pixel-difference frame deduplication,
+              and motion-frame tiling keep <span class="accent evidence">task-relevant visual state</span>
+              up to date.
             </p>
           </div>
         </article>
@@ -279,11 +280,25 @@ OPENAI_API_KEY=sk-... npm start</code></pre>
 
       <section class="text-section">
         <h2>How it works</h2>
+        <p>
+          VideoMemory periodically calls a vision-language model (VLM) to update
+          a <strong>natural-language running state</strong> for every active task.
+          Before calling the model, it uses <strong>pixel-difference frame deduplication</strong>
+          so near-identical frames are skipped instead of spending model calls on repeated pixels.
+        </p>
+        <p>
+          In the default Gemini 2.5 Flash path, the lag from an action becoming visible
+          in the camera to VideoMemory firing a trigger is usually around
+          <strong>3 seconds</strong>. Most of that delay is VLM latency: a Gemini 2.5 Flash
+          call takes roughly <strong>2 seconds</strong>. To avoid missing quick actions when
+          there is a lot of motion, VideoMemory tiles multiple recent frames into one model
+          input, giving the VLM a compact view of the action over time instead of a single frame.
+        </p>
         <ol class="flow-list">
-          <li><strong>Sample</strong><span>The camera ingestor samples frames.</span></li>
-          <li><strong>Check</strong><span>The model checks the active task descriptions.</span></li>
-          <li><strong>Record</strong><span>VideoMemory saves task notes, frames, and optional clips.</span></li>
-          <li><strong>Wake</strong><span>A webhook wakes the agent with the task update.</span></li>
+          <li><strong>State loop</strong><span>A VLM updates natural-language state for each active task.</span></li>
+          <li><strong>Dedup</strong><span>Pixel differences skip frames that have not meaningfully changed.</span></li>
+          <li><strong>Latency</strong><span>Triggers usually fire about 3 seconds after the action is visible.</span></li>
+          <li><strong>Motion tiling</strong><span>Fast motion gets multiple recent frames tiled into one VLM input.</span></li>
         </ol>
       </section>
 
